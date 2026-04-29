@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вопрос для Ксении</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 430px;
+      padding: 35px 25px;
+      text-align: center;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 15px 32px;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    #yes {
+      background: #ffffff;
+      color: #4b2cff;
+      margin-right: 15px;
+    }
+
+    #yes:hover {
+      transform: scale(1.1);
+    }
+
+    #no {
+      position: absolute;
+      background: #ff4f7b;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.4;
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .emoji {
+      font-size: 55px;
+      margin-bottom: 20px;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="questionBox">
+    <h1>Ты любишь своего брата?</h1>
+
+    <div class="buttons">
+      <button id="yes" onclick="showMessage()">ДА</button>
+      <button id="no" onclick="moveNo()">НЕТ</button>
+    </div>
+  </div>
+
+  <div class="card hidden" id="resultBox">
+    <div class="emoji">🎉</div>
+    <div class="message">
+      Поздравляю, Ксения!<br>
+      Вы обрели самого лучшего брата ❤️
+    </div>
+  </div>
+
+  <script>
+    const noButton = document.getElementById("no");
+
+    noButton.style.left = "230px";
+    noButton.style.top = "0px";
+
+    function moveNo() {
+      const maxX = window.innerWidth - noButton.offsetWidth - 20;
+      const maxY = window.innerHeight - noButton.offsetHeight - 20;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noButton.style.position = "fixed";
+      noButton.style.left = randomX + "px";
+      noButton.style.top = randomY + "px";
+    }
+
+    function showMessage() {
+      document.getElementById("questionBox").classList.add("hidden");
+      document.getElementById("resultBox").classList.remove("hidden");
+    }
+  </script>
+
+</body>
+</html>
